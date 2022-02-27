@@ -22,9 +22,10 @@ Raspberry Pi Zero 2 W
   ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
   update_config=1
   country=DE
+  
   network={
-          ssid="myhomewifi"
-          psk="myhomewifipassword"
+          ssid="myhomewifi"
+          psk="myhomewifipassword"
   }
   EOF
   ```
