@@ -2,6 +2,8 @@ setting-up-raspberry-pi
 =======================
 Install options for the Raspberry Pi (all versions)
 
+Detailed information on all versions: https://de.wikipedia.org/wiki/Raspberry_Pi
+
 Raspberry Pi Zero, Raspberry Pi Zero W / WH
 -----------------------------------------
 ARM6 32-bit
