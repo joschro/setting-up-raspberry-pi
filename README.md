@@ -14,18 +14,10 @@ Raspberry Pi Zero 2 W
 * Download any of https://www.raspberrypi.com/software/operating-systems/ provided images.
 * Under Linux, write the image to an SD card, e.g.
   ```unzip -p 2022-01-28-raspios-bullseye-armhf-lite.zip | dd status=progress bs=4M of=/dev/sda && sync;sync;sync```
-* Mount both /boot and /root partitions; create a file called "ssh" in the boot partition, e.g.
+* Mount the /boot partition; create a file called "ssh" in the boot partition, e.g.
   ```touch /run/media/joschro/boot/ssh```
-  Edit etc/wpa_supplicant/wpa_supplicant.conf on the root partition of the mounted SD card, e.g.
-  ```cat >> /run/media/jschrode/rootfs/etc/wpa_supplicant/wpa_supplicant.conf <<EOF
-  country=DE
-  
-  network={
-          ssid="myhomewifi"
-          psk="myhomewifipassword"
-  }```
-  so it looks like this:
-  ```
+  In the same location, create a file called wpa_supplicant.conf with e.g.
+  ```cat > /run/media/joschro/boot/wpa_supplicant.conf <<EOF
   ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
   update_config=1
   country=DE
@@ -33,9 +25,10 @@ Raspberry Pi Zero 2 W
   network={
           ssid="myhomewifi"
           psk="myhomewifipassword"
-  }```
-* Unmount both mount points, e.g.
-  ```umount /run/media/joschro/*```
+  }
+  EOF```
+* Unmount the mount point, e.g.
+  ```umount /run/media/joschro/boot```
 
 Raspberry Pi 1 Mod. A, Raspberry Pi 1 Mod. A+, Raspberry Pi 1 Mod. B, Raspberry Pi 1 Mod. B+
 ---------------------
