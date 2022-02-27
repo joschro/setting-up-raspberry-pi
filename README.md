@@ -18,12 +18,11 @@ Raspberry Pi Zero 2 W
   ```touch /run/media/joschro/boot/ssh```
   In the same location, create a file called wpa_supplicant.conf with e.g.
   ```
-  cat > /run/media/joschro/boot/wpa_supplicant.conf <<EOF
+  cat > /run/media/jschrode/boot/wpa_supplicant.conf <<EOF
   ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
   update_config=1
   country=DE
-  
-  network={
+  network={
           ssid="myhomewifi"
           psk="myhomewifipassword"
   }
