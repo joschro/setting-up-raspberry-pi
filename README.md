@@ -24,8 +24,8 @@ Raspberry Pi Zero 2 W
   country=DE
   
   network={
-   ssid="myhomewifi"
-   psk="myhomewifipassword"
+          ssid="myhomewifi"
+          psk="myhomewifipassword"
   }
   EOF
   ```
