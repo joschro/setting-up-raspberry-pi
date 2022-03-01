@@ -13,7 +13,10 @@ Raspberry Pi Zero 2 W
 ### RaspiOS
 * Download any of https://www.raspberrypi.com/software/operating-systems/ provided images.
 * Under Linux, write the image to an SD card, e.g.
-  ```unzip -p 2022-01-28-raspios-bullseye-armhf-lite.zip | dd status=progress bs=4M of=/dev/sda && sync;sync;sync```
+  ```
+  unzip -p 2022-01-28-raspios-bullseye-armhf-lite.zip | dd status=progress bs=4M of=/dev/sda && sync;sync;sync
+  ```
+  
 * Mount the /boot partition; create a file called "ssh" in the boot partition, e.g.
 
 ```
