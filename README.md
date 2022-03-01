@@ -20,7 +20,7 @@ Raspberry Pi Zero 2 W
   touch /run/media/joschro/boot/ssh
   ```
   
-  In the same location, create a file called wpa_supplicant.conf with e.g.
+*  In the same location, create a file called wpa_supplicant.conf with e.g.
 
 ```
   cat > /run/media/jschrode/boot/wpa_supplicant.conf <<EOF
