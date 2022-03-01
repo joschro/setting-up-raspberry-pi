@@ -15,13 +15,14 @@ Raspberry Pi Zero 2 W
 * Under Linux, write the image to an SD card, e.g.
   ```unzip -p 2022-01-28-raspios-bullseye-armhf-lite.zip | dd status=progress bs=4M of=/dev/sda && sync;sync;sync```
 * Mount the /boot partition; create a file called "ssh" in the boot partition, e.g.
+
   ```
   touch /run/media/joschro/boot/ssh
   ```
   
   In the same location, create a file called wpa_supplicant.conf with e.g.
 
-  ```
+```
   cat > /run/media/jschrode/boot/wpa_supplicant.conf <<EOF
   ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
   update_config=1
