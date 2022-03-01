@@ -22,7 +22,7 @@ Raspberry Pi Zero 2 W
   
   In the same location, create a file called wpa_supplicant.conf with e.g.
 
-```
+  ```
   cat > /run/media/jschrode/boot/wpa_supplicant.conf <<EOF
   ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
   update_config=1
@@ -34,7 +34,7 @@ Raspberry Pi Zero 2 W
   }
   EOF
   ```
-  
+
 * Unmount the mount point, e.g.
   ```umount /run/media/joschro/boot```
 
