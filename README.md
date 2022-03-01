@@ -16,13 +16,13 @@ Raspberry Pi Zero 2 W
   ```unzip -p 2022-01-28-raspios-bullseye-armhf-lite.zip | dd status=progress bs=4M of=/dev/sda && sync;sync;sync```
 * Mount the /boot partition; create a file called "ssh" in the boot partition, e.g.
 
-  ```
+```
   touch /run/media/joschro/boot/ssh
   ```
   
   In the same location, create a file called wpa_supplicant.conf with e.g.
 
-  ```
+```
   cat > /run/media/jschrode/boot/wpa_supplicant.conf <<EOF
   ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
   update_config=1
@@ -36,7 +36,9 @@ Raspberry Pi Zero 2 W
   ```
 
 * Unmount the mount point, e.g.
-  ```umount /run/media/joschro/boot```
+```
+  umount /run/media/joschro/boot
+  ```
 
 Raspberry Pi 1 Mod. A, Raspberry Pi 1 Mod. A+, Raspberry Pi 1 Mod. B, Raspberry Pi 1 Mod. B+
 ---------------------
