@@ -10,38 +10,54 @@ ARM6 32-bit
 
 Raspberry Pi Zero 2 W
 ---------------------
+ARM8 64-bit
+
 ### RaspiOS
 * Download any of https://www.raspberrypi.com/software/operating-systems/ provided images.
 * Under Linux, write the image to an SD card, e.g.
-```
+  ```
   unzip -p 2022-01-28-raspios-bullseye-armhf-lite.zip | dd status=progress bs=4M of=/dev/sda && sync;sync;sync
   ```
-  
-* Mount the /boot partition; create a file called "ssh" in the boot partition, e.g.
 
-```
-  touch /run/media/joschro/boot/ssh
+* For graphical desktop images, just insert SD card and power up; follow the instructions displayed
+* For text only command line images, just insert SD card and power up; login with username ```pi``` and password ```raspberry``` and enter:
+  ```
+  sudo raspi-config
   ```
   
-*  In the same location, create a file called wpa_supplicant.conf with e.g.
-
-```
-  cat > /run/media/jschrode/boot/wpa_supplicant.conf <<EOF
-  ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-  update_config=1
-  country=DE
+* For headless operation (no monitor, no keyboard attached), you need to prepare the installes operating system to be accessible via Wifi:
+  * Mount the /boot partition; create a file called "ssh" in the boot partition, e.g.
+    ```
+    touch /run/media/joschro/boot/ssh
+    ```
   
-  network={
-          ssid="myhomewifi"
-          psk="myhomewifipassword"
-  }
-  EOF
-  ```
-
-* Unmount the mount point, e.g.
+  *  In the same location, create a file called wpa_supplicant.conf with e.g.  
 ```
-  umount /run/media/joschro/boot
-  ```
+cat > /run/media/jschrode/boot/wpa_supplicant.conf <<EOF
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=DE
+
+network={
+        ssid="myhomewifi"
+        psk="myhomewifipassword"
+}
+EOF
+```
+*    
+  * Unmount the mount point, e.g.  
+    ```
+    umount /run/media/joschro/boot
+    ```
+  * Insert SD card and power up; look up any newly connected device in your router and determine the assigned IP address of your Raspberry Pi to connect via SSH with username ```pi``` and password ```raspberry```, e.g.:
+    ```
+    ssh pi@192.168.178.42
+    ```
+### RedSleeve
+* TBD
+### Fedora
+* Download TBD
+
 
 Raspberry Pi 1 Mod. A, Raspberry Pi 1 Mod. A+, Raspberry Pi 1 Mod. B, Raspberry Pi 1 Mod. B+
 ---------------------
