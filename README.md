@@ -53,11 +53,25 @@ EOF
     ```
     ssh pi@192.168.178.42
     ```
-### RedSleeve
-* TBD
 ### Fedora
+https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
+
 * Download TBD
 
+### CentOS
+Upstream Red Hat Enterprise Linux.
+
+* Download any image from ```http://mirror.centos.org/altarch/``` or ```http://isoredirect.centos.org/altarch/```
+
+### RedSleeve
+https://redsleeve.fandom.com/wiki/Install_on_a_Raspberry_Pi
+A CentOS clone.
+
+* Download an image from http://ftp.redsleeve.org/pub/ , e.g.
+  ```
+  http://ftp.redsleeve.org/pub/el8/8/rootfs/rsel8_root_img.tar.gz
+  ```
+  
 
 Raspberry Pi 1 Mod. A, Raspberry Pi 1 Mod. A+, Raspberry Pi 1 Mod. B, Raspberry Pi 1 Mod. B+
 ---------------------
