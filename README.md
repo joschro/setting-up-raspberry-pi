@@ -8,6 +8,22 @@ Raspberry Pi Zero, Raspberry Pi Zero W / WH
 -----------------------------------------
 ARM6 32-bit
 
+### RedSleeve
+    Mount the second partition of the card on your workstation. The rest of the instructions assume that this is partition2 and you have this mounted under /mnt.
+    cd /mnt
+    Backup the modules and firmware: tar -cf ~/raspi.tar etc/fstab lib/modules lib/firmware
+    cd ~
+    umount /mnt
+    mke2fs -t ext4 partition2
+    mount partition2 /mnt
+    cd /mnt
+    Extract the RedSleeve rootfs: tar --strip-components 1 -xjf ~/rsel6-rootfs.tar.bz2
+    Restore the backed up files: tar -xf ~/raspi.tar
+    cd etc
+    vi fstab. Change root to mount from /dev/mmcblk0p2, /boot to mount from /dev/mmcblk0p1
+    cd ~
+    umount /mnt
+
 Raspberry Pi Zero 2 W
 ---------------------
 ARM8 64-bit
