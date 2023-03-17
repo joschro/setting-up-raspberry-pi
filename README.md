@@ -11,6 +11,9 @@ ARM6 32-bit
 ### RedSleeve
 https://redsleeve.fandom.com/wiki/Install_on_a_Raspberry_Pi
 
+* RHEL 7: [http://ftp.nluug.nl/os/Linux/distr/redsleeve/el7-devel/el7/rootfs/](https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el7-devel/el7/rootfs/)
+* RHEL 8: [http://ftp.nluug.nl/os/Linux/distr/redsleeve/el8/8.0-first_run/rootfs/](https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el8/8.0-first_run/rootfs/)
+
     Mount the second partition of the card on your workstation. The rest of the instructions assume that this is partition2 and you have this mounted under /mnt.
     cd /mnt
     Backup the modules and firmware: tar -cf ~/raspi.tar etc/fstab lib/modules lib/firmware
