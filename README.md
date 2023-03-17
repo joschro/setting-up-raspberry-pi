@@ -9,6 +9,8 @@ Raspberry Pi Zero, Raspberry Pi Zero W / WH
 ARM6 32-bit
 
 ### RedSleeve
+https://redsleeve.fandom.com/wiki/Install_on_a_Raspberry_Pi
+
     Mount the second partition of the card on your workstation. The rest of the instructions assume that this is partition2 and you have this mounted under /mnt.
     cd /mnt
     Backup the modules and firmware: tar -cf ~/raspi.tar etc/fstab lib/modules lib/firmware
