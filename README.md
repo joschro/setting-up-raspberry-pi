@@ -47,14 +47,14 @@ ARM8 64-bit
   ```
   
 * For headless operation (no monitor, no keyboard attached), you need to prepare the installes operating system to be accessible via Wifi:
-  * Mount the /boot partition; create a file called "ssh" in the boot partition, e.g.
+  * Mount the /boot partition (in this case to /run/media/joschro/bootfs); create a file called "ssh" in the boot partition, e.g.
     ```
-    touch /run/media/joschro/boot/ssh
+    touch /run/media/joschro/bootfs/ssh
     ```
   
   *  In the same location, create a file called wpa_supplicant.conf with e.g.  
 ```
-cat > /run/media/joschro/boot/wpa_supplicant.conf <<EOF
+cat > /run/media/joschro/bootfs/wpa_supplicant.conf <<EOF
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 country=DE
@@ -68,7 +68,7 @@ EOF
 *    
   * Unmount the mount point, e.g.  
     ```
-    umount /run/media/joschro/boot
+    umount /run/media/joschro/bootfs
     ```
   * Insert SD card and power up; look up any newly connected device in your router and determine the assigned IP address of your Raspberry Pi to connect via SSH with username ```pi``` and password ```raspberry```, e.g.:
     ```
