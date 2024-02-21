@@ -11,6 +11,7 @@ ARM6 32-bit
 ### RedSleeve
 https://redsleeve.fandom.com/wiki/Install_on_a_Raspberry_Pi
 
+* RHEL 6: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el6/rootfs/
 * RHEL 7: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el7-devel/el7/rootfs/
 * RHEL 8: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el8/8.0-first_run/rootfs/
 
