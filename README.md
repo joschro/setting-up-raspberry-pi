@@ -14,6 +14,7 @@ https://redsleeve.fandom.com/wiki/Install_on_a_Raspberry_Pi
 * RHEL 7: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el7-devel/el7/rootfs/
 * RHEL 8: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el8/8.0-first_run/rootfs/
 
+    ```
     Mount the second partition of the card on your workstation. The rest of the instructions assume that this is partition2 and you have this mounted under /mnt.
     cd /mnt
     Backup the modules and firmware: tar -cf ~/raspi.tar etc/fstab lib/modules lib/firmware
@@ -28,6 +29,7 @@ https://redsleeve.fandom.com/wiki/Install_on_a_Raspberry_Pi
     vi fstab. Change root to mount from /dev/mmcblk0p2, /boot to mount from /dev/mmcblk0p1
     cd ~
     umount /mnt
+    ```
 
 Raspberry Pi Zero 2 W
 ---------------------
