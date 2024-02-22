@@ -15,6 +15,7 @@ https://redsleeve.fandom.com/wiki/Install_on_a_Raspberry_Pi
 * RHEL 7: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el7-devel/el7/rootfs/
 * RHEL 8: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el8/8.0-first_run/rootfs/
 
+Install and boot one of https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-32-bit and then
     ```
     Mount the second partition of the card on your workstation. The rest of the instructions assume that this is partition2 and you have this mounted under /mnt.
     cd /mnt
