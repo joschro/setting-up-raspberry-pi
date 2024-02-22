@@ -17,7 +17,7 @@ https://redsleeve.fandom.com/wiki/Install_on_a_Raspberry_Pi
 
 Install and boot one of https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-32-bit and then
 
-    ```
+    
     Mount the second partition of the card on your workstation. The rest of the instructions assume that this is partition2 and you have this mounted under /mnt.
     cd /mnt
     Backup the modules and firmware: tar -cf ~/raspi.tar etc/fstab lib/modules lib/firmware
@@ -32,7 +32,7 @@ Install and boot one of https://www.raspberrypi.com/software/operating-systems/#
     vi fstab. Change root to mount from /dev/mmcblk0p2, /boot to mount from /dev/mmcblk0p1
     cd ~
     umount /mnt
-    ```
+    
 
 Raspberry Pi Zero 2 W
 ---------------------
