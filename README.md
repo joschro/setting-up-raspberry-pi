@@ -11,9 +11,45 @@ ARM6 32-bit
 ### RedSleeve
 https://redsleeve.fandom.com/wiki/Install_on_a_Raspberry_Pi
 
-* RHEL 6: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el6/rootfs/
-* RHEL 7: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el7-devel/el7/rootfs/
-* RHEL 8: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el8/8.0-first_run/rootfs/
+#### RHEL 6: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el6/rootfs/
+#### RHEL 7: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el7-devel/el7/rootfs/
+    * Download *raspi-redsleeve7.4-cli-1.0.img.xz* (or any newer release) from [Github](https://github.com/redsleeve-linux/redsleeve-linux.github.io/releases/tag/rpi-7.4-1.0)
+    * Write RedSleeve to an SD card with  
+      ```xzcat /run/media/jschrode/Drive1/Images/raspi-redsleeve7.4-cli-1.0.img.xz | dd status=progress bs=4M of=/dev/sda```
+    * Login with ```rpi login: root``` and ```Password: password1234```
+    * Change keyboard layout to your locale with  
+      ```[root@rpi ~]# loadkeys de```  
+      for german layout
+    * Make keyboard layout permanent with  
+     ```[root@rpi ~]# localectl set-keymap de```
+    * Change root password with  
+      ```[root@rpi ~]# passwd```
+    * Set up networking with  
+      ```[root@rpi ~]# nmtui```
+      - select ```Activate a connection```
+      - choose a Wifi from the list to connect to and provide the password when prompted
+      - select ```<Back>```
+      - select ```Set system hostname``` and provide a meaningful name for the system
+      - select ```Quit``` and confirm with ```<OK>```
+      - use the command ```ifconfig``` to show the IP address the RPi got from the DHCP server
+    * Resize root filesystem with  
+      ```[root@rpi ~]# fdisk /dev/mmcblk0```
+      - type ```d``` and accept with ```<Enter>```
+      - type ```n``` and accept all questions with ```<Enter>```
+      - type ```w``` and ```<Enter>``` to write and exit fdisk
+      - enter  
+        ```[root@rpi ~]# reboot``` to reboot the system and re-read partition table
+      - login as root with the password you set above
+      - enter  
+        ```[root@rpi ~]# resize2fs /dev/mmcblk0p2``` to resize the root filesystem
+    * Install required software with 
+      - ```[root@rpi ~]# yum -y install epel-release```
+      - ```[root@rpi ~]# yum -y install git ansible vim screen```
+      - ```[root@rpi ~]# yum -y update```
+      and activate updated packages with
+      - ```[root@rpi ~]# reboot```
+
+#### RHEL 8: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el8/8.0-first_run/rootfs/
 
 Install and boot one of https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-32-bit and then
 
