@@ -147,6 +147,8 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
     rpm-ostree upgrade
     systemctl reboot
     systemctl enable --now cockpit.socket
+    useradd -G wheel -c "Tux Pinguin" -m -U tux
+    passwd tux
     ```
     
 
