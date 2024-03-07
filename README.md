@@ -224,3 +224,15 @@ Raspberry Pi 3 Mod. B+
 
 Raspberry Pi 4 Mod. B
 ---------------------
+
+Raspberry Pi compatibility
+==========================
+| OS            | Version   | Variant | | Zero | Zero W / WH | Zero 2 W | 1 Mod. A | 1 Mod. A+ | 1 Mod. B | 1 Mod. B+ |	2 Mod. B | 2 Mod. B v1.2 | 3 Mod. A+ |	3 Mod. B | 3 Mod. B+ | 4 Mod. B | 5 | Link |
+| ------------- | --------- | ------- |-| ---- | ----------- | -------- | -------- | --------- | -------- | --------- | -------- | ------------- | --------- | -------- | --------- | -------- | ---- | ---- |
+|               |           | CPU     | |ARMv6 32-bit|ARMv6 32-bit|ARMv8 64-bit|ARMv6 32-bit|ARMv6 32-bit|ARMv6 32-bit|ARMv6 32-bit|ARMv7 32-bit|ARMv8 64-bit|ARMv8 64-bit|ARMv8 64-bit|ARMv8 64-bit|ARMv8 64-bit|ARMv8 64-bit|
+|               |           | RAM     | |512 MB| 512MB       | 512 MB   | 256 MB   | (512 MB)  | (512 MB) | 512 MB    | 1 GB     | 1 GB          | 512 MB    | 1 GB     | 1 GB      |1/2/4/8 GB|4/8 GB|
+| Fedora        | 39        | IoT     | |      |             | X        |          |           |          |           |          |               |           |          |           |          |      |
+| Fedora        | 39        | Minimal | |      |             | X        |          |           |          |           |          |               |           |          |           |          |      | https://download.fedoraproject.org/pub/fedora-secondary/releases/39/Spins/aarch64/images/Fedora-Minimal-39-1.5.aarch64.raw.xz |
+| CentOS        | 9 Stream  |         | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
+| RedSleeve     | 7         |         | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
+| RaspiOS       |           |         | |      |             |          |          |           |          |           |          |               |           |          |           |          |   |
