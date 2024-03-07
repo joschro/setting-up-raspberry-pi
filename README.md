@@ -118,7 +118,29 @@ EOF
 ### Fedora
 https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
 
-* Download TBD
+* Verified downloads
+  * https://download.fedoraproject.org/pub/fedora-secondary/releases/39/Spins/aarch64/images/Fedora-Minimal-39-1.5.aarch64.raw.xz
+
+    To use available space on sd card, either add a 4th partition with parted or enlarge 3rd partition:
+    ```
+    # enlarge the 3rd partition (this example uses mmcblk0)
+    growpart /dev/mmcblk0 3
+    # grow the volume to take up the rest of the disk
+    resize2fs /dev/mmcblk0p3
+    # resize root partition for the armhfp server image (which uses xfs)
+    xfs_growfs -d /
+    ```
+
+* Activate wifi for minimal and server images
+  ```
+  # list of networks
+  nmcli device wifi list
+  # connect
+  nmcli device wifi connect $SSID --ask
+  # in case of failure due to wrong password remove connection
+  nmcli con delete $SSID
+  # before connecting again
+  ```
 
 ### CentOS
 Upstream Red Hat Enterprise Linux.
