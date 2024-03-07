@@ -139,6 +139,16 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
     ```
     arm-image-installer --norootpass --resizefs --target=rpi02w --addkey=/home/<YOUR_USER>/.ssh/id_rsa.pub --image=/home/<YOUR_USER>/Downloads/Fedora-IoT-39.20231103.1-20231103.1.aarch64.raw.xz --media=/dev/sdb
     ```
+    add packages:
+    ```
+    rpm-ostree status
+    rpm-ostree install cockpit cockpit-podman
+    firewalld-cmd --add-service cockpit --permanent
+    rpm-ostree upgrade
+    systemctl reboot
+    systemctl enable --now cockpit.socket
+    ```
+    
 
 * Activate wifi for
   * minimal and server images
