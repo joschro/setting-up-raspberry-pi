@@ -130,18 +130,64 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
     # resize root partition for the armhfp server image (which uses xfs)
     xfs_growfs -d /
     ```
+  * https://download.fedoraproject.org/pub/alt/iot/39/IoT/aarch64/images/Fedora-IoT-39.20231103.1-20231103.1.aarch64.raw.xz
 
-* Activate wifi for minimal and server images
-  ```
-  # list of networks
-  nmcli device wifi list
-  # connect
-  nmcli device wifi connect $SSID --ask
-  # in case of failure due to wrong password remove connection
-  nmcli con delete $SSID
-  # before connecting again
-  ```
+    See https://docs.fedoraproject.org/en-US/iot/ for more info.
+    
+    https://www.redhat.com/sysadmin/fedora-iot-raspberry-pi
+    https://www.redhat.com/sysadmin/ansible-automate-fedora-iot-config
+    ```
+    arm-image-installer --norootpass --resizefs --target=rpi02w --addkey=/home/<YOUR_USER>/.ssh/id_rsa.pub --image=/home/<YOUR_USER>/Downloads/Fedora-IoT-39.20231103.1-20231103.1.aarch64.raw.xz --media=/dev/sdb
+    ```
 
+* Activate wifi for
+  * minimal and server images
+    ```
+    # list of networks
+    nmcli device wifi list
+    # connect
+    nmcli device wifi connect $SSID --ask
+    # in case of failure due to wrong password remove connection
+    nmcli con delete $SSID
+    # before connecting again
+    ```
+  * IoT images
+
+    ```
+    # mount partition 3 and create wifi01.nmconnection in
+    /mnt/ostree/deploy/fedora-iot/deploy/d06...0f.0/etc/NetworkManager/system-connections/
+    # with the following content:
+    [connection]
+    id=wifi01
+    type=wifi
+    permissions=
+    autoconnect=true
+    
+    [wifi]
+    mac-address-blacklist=
+    mode=infrastructure
+    ssid=wifissid
+    
+    [wifi-security]
+    auth-alg=open
+    key-mgmt=wpa-psk
+    psk=********************************************
+    
+    [ipv4]
+    dns-search=
+    method=auto
+    
+    [ipv6]
+    addr-gen-mode=stable-privacy
+    dns-search=
+    method=auto
+    
+    [proxy]
+
+    # finally, change file permission to
+    chmod 600 wifi01.nmconnection
+    ```
+    
 ### CentOS
 Upstream Red Hat Enterprise Linux.
 
