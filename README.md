@@ -133,9 +133,13 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
     # finally, change file permission to
     chmod 600 wifi01.nmconnection
     ```
+* Either look up the IP address of the Raspberry Pi in your router or login using root and no password, then issue
+  ```
+  ip add sh
+  ```
 * Login via ssh using your ssh public key like
   ```
-  ssh -i /home/<YOUR_USER>/.ssh/id_rsa.pub root@<ip_of-your_raspberry>
+  ssh -i /home/<YOUR_USER>/.ssh/id_rsa.pub root@<ip_of_your_raspberry>
   ```
 * Add packages and update:
     ```
