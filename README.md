@@ -144,10 +144,7 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
 * Add packages and update:
     ```
     rpm-ostree status
-    rpm-ostree install cockpit cockpit-podman
-    firewalld-cmd --add-service cockpit --permanent
-    rpm-ostree upgrade
-    systemctl reboot
+    rpm-ostree install cockpit cockpit-podman && firewalld-cmd --add-service cockpit --permanent && rpm-ostree upgrade && systemctl reboot
     systemctl enable --now cockpit.socket
     useradd -G wheel -c "Tux Pinguin" -m -U tux
     passwd tux
