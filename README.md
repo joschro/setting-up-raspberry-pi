@@ -53,8 +53,8 @@ Upstream Red Hat Enterprise Linux: ```http://mirror.centos.org/altarch/``` or ``
   ```
   then ```Activate a connection```.
 
-  > [!IMPORTANT]
-  > Seems not to work, no SSID is showing up; connecting wired network works to update, but afterwards network is not coming up - brmcfmac module crashes.
+> [!NOTE]
+> Seems not to work, no SSID is showing up; connecting wired network works to update, but afterwards network is not coming up - brmcfmac module crashes.
 
 
 # Fedora
