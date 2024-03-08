@@ -146,78 +146,11 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
     passwd tux
     ```
 
-Raspberry Pi Zero, Raspberry Pi Zero W / WH
------------------------------------------
-ARM6 32-bit
+# RaspiOS
+* Download image: https://www.raspberrypi.com/software/operating-systems/
 
-### RedSleeve
-https://redsleeve.fandom.com/wiki/Install_on_a_Raspberry_Pi
-
-#### RHEL 6: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el6/rootfs/
-#### RHEL 7: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el7-devel/el7/rootfs/
- * Download *raspi-redsleeve7.4-cli-1.0.img.xz* (or any newer release) from [Github](https://github.com/redsleeve-linux/redsleeve-linux.github.io/releases/tag/rpi-7.4-1.0)
- * Write RedSleeve to an SD card with  
-   ```xzcat /run/media/jschrode/Drive1/Images/raspi-redsleeve7.4-cli-1.0.img.xz | dd status=progress bs=4M of=/dev/sda```
- * Login with ```rpi login: root``` and ```Password: password1234```
- * Change keyboard layout to your locale with  
-   ```[root@rpi ~]# loadkeys de```  
-   for german layout
- * Make keyboard layout permanent with  
-  ```[root@rpi ~]# localectl set-keymap de```
- * Change root password with  
-   ```[root@rpi ~]# passwd```
- * Set up networking with  
-   ```[root@rpi ~]# nmtui```
-   - select ```Activate a connection```
-   - choose a Wifi from the list to connect to and provide the password when prompted
-   - select ```<Back>```
-   - select ```Set system hostname``` and provide a meaningful name for the system
-   - select ```Quit``` and confirm with ```<OK>```
-   - use the command ```ifconfig``` to show the IP address the RPi got from the DHCP server
- * Resize root filesystem with  
-   ```[root@rpi ~]# fdisk /dev/mmcblk0```
-   - type ```d``` and accept with ```<Enter>```
-   - type ```n``` and accept all questions with ```<Enter>```
-   - type ```w``` and ```<Enter>``` to write and exit fdisk
-   - enter  
-     ```[root@rpi ~]# reboot``` to reboot the system and re-read partition table
-   - login as root with the password you set above
-   - enter  
-     ```[root@rpi ~]# resize2fs /dev/mmcblk0p2``` to resize the root filesystem
- * Install required software with 
-   - ```[root@rpi ~]# yum -y install epel-release```
-   - ```[root@rpi ~]# yum -y install git ansible vim screen```
-   - ```[root@rpi ~]# yum -y update```
-   and activate updated packages with
-   - ```[root@rpi ~]# reboot```
-
-#### RHEL 8: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el8/8.0-first_run/rootfs/
-
-Install and boot one of https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-32-bit and then
-
-    
-    Mount the second partition of the card on your workstation. The rest of the instructions assume that this is partition2 and you have this mounted under /mnt.
-    cd /mnt
-    Backup the modules and firmware: tar -cf ~/raspi.tar etc/fstab lib/modules lib/firmware
-    cd ~
-    umount /mnt
-    mke2fs -t ext4 partition2
-    mount partition2 /mnt
-    cd /mnt
-    Extract the RedSleeve rootfs: tar --strip-components 1 -xjf ~/rsel6-rootfs.tar.bz2
-    Restore the backed up files: tar -xf ~/raspi.tar
-    cd etc
-    vi fstab. Change root to mount from /dev/mmcblk0p2, /boot to mount from /dev/mmcblk0p1
-    cd ~
-    umount /mnt
-    
-
-Raspberry Pi Zero 2 W
----------------------
-ARM8 64-bit
-
-### RaspiOS
-* Download any of https://www.raspberrypi.com/software/operating-systems/ provided images.
+## RaspiOS on Raspberry Pi Zero 2 W
+* Download image: any of https://www.raspberrypi.com/software/operating-systems/ provided images
 * Under Linux, write the image to an SD card, e.g.
   ```
   unzip -p 2022-01-28-raspios-bullseye-armhf-lite.zip | dd status=progress bs=4M of=/dev/sda && sync;sync;sync
@@ -235,19 +168,19 @@ ARM8 64-bit
     touch /run/media/joschro/bootfs/ssh
     ```
   
-  *  In the same location, create a file called wpa_supplicant.conf with e.g.  
-```
-cat > /run/media/joschro/bootfs/wpa_supplicant.conf <<EOF
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-country=DE
-
-network={
-        ssid="myhomewifi"
-        psk="myhomewifipassword"
-}
-EOF
-```
+  *  In the same location, create a file called wpa_supplicant.conf with e.g.
+     ```
+     cat > /run/media/joschro/bootfs/wpa_supplicant.conf <<EOF
+     ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+     update_config=1
+     country=DE
+     
+     network={
+             ssid="myhomewifi"
+             psk="myhomewifipassword"
+     }
+     EOF
+     ```
 *    
   * Unmount the mount point, e.g.  
     ```
@@ -258,8 +191,73 @@ EOF
     ssh pi@192.168.178.42
     ```
 
-    
-### RedSleeve
+# RedSleeve
+https://redsleeve.fandom.com/wiki/Install_on_a_Raspberry_Pi
+
+## RedSleeve 6 on Raspberry Pi Zero, Raspberry Pi Zero W / WH
+* Download image: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el6/rootfs/
+
+## RedSleeve 7 on Raspberry Pi Zero, Raspberry Pi Zero W / WH
+* Download image: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el7-devel/el7/rootfs/
+
+* Download *raspi-redsleeve7.4-cli-1.0.img.xz* (or any newer release) from [Github](https://github.com/redsleeve-linux/redsleeve-linux.github.io/releases/tag/rpi-7.4-1.0)
+* Write RedSleeve to an SD card with  
+  ```xzcat /run/media/jschrode/Drive1/Images/raspi-redsleeve7.4-cli-1.0.img.xz | dd status=progress bs=4M of=/dev/sda```
+* Login with ```rpi login: root``` and ```Password: password1234```
+* Change keyboard layout to your locale with  
+  ```[root@rpi ~]# loadkeys de```  
+  for german layout
+* Make keyboard layout permanent with  
+ ```[root@rpi ~]# localectl set-keymap de```
+* Change root password with  
+  ```[root@rpi ~]# passwd```
+* Set up networking with  
+  ```[root@rpi ~]# nmtui```
+  - select ```Activate a connection```
+  - choose a Wifi from the list to connect to and provide the password when prompted
+  - select ```<Back>```
+  - select ```Set system hostname``` and provide a meaningful name for the system
+  - select ```Quit``` and confirm with ```<OK>```
+  - use the command ```ifconfig``` to show the IP address the RPi got from the DHCP server
+* Resize root filesystem with  
+  ```[root@rpi ~]# fdisk /dev/mmcblk0```
+  - type ```d``` and accept with ```<Enter>```
+  - type ```n``` and accept all questions with ```<Enter>```
+  - type ```w``` and ```<Enter>``` to write and exit fdisk
+  - enter  
+    ```[root@rpi ~]# reboot``` to reboot the system and re-read partition table
+  - login as root with the password you set above
+  - enter  
+    ```[root@rpi ~]# resize2fs /dev/mmcblk0p2``` to resize the root filesystem
+* Install required software with 
+  - ```[root@rpi ~]# yum -y install epel-release```
+  - ```[root@rpi ~]# yum -y install git ansible vim screen```
+  - ```[root@rpi ~]# yum -y update```
+  and activate updated packages with
+  - ```[root@rpi ~]# reboot```
+
+## RedSleeve 8 on Raspberry Pi Zero, Raspberry Pi Zero W / WH
+* Download image: https://www.mirrorservice.org/sites/ftp.redsleeve.org/pub/el8/8.0-first_run/rootfs/
+
+* Install and boot one of https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-32-bit and then
+  ```
+  Mount the second partition of the card on your workstation. The rest of the instructions assume that this is partition2 and you have this mounted under /mnt.
+  cd /mnt
+  Backup the modules and firmware: tar -cf ~/raspi.tar etc/fstab lib/modules lib/firmware
+  cd ~
+  umount /mnt
+  mke2fs -t ext4 partition2
+  mount partition2 /mnt
+  cd /mnt
+  Extract the RedSleeve rootfs: tar --strip-components 1 -xjf ~/rsel6-rootfs.tar.bz2
+  Restore the backed up files: tar -xf ~/raspi.tar
+  cd etc
+  vi fstab. Change root to mount from /dev/mmcblk0p2, /boot to mount from /dev/mmcblk0p1
+  cd ~
+  umount /mnt
+  ```
+        
+## RedSleeve 8 on Raspberry Pi Zero 2 W
 https://redsleeve.fandom.com/wiki/Install_on_a_Raspberry_Pi
 A CentOS clone.
 
@@ -271,7 +269,6 @@ A CentOS clone.
 
 Raspberry Pi 1 Mod. A, Raspberry Pi 1 Mod. A+, Raspberry Pi 1 Mod. B, Raspberry Pi 1 Mod. B+
 ---------------------
-ARM6, 32-bit
 
 Raspberry Pi 2 Mod. B
 ---------------------
