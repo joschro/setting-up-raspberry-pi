@@ -6,16 +6,117 @@ Detailed hardware information for all versions: https://de.wikipedia.org/wiki/Ra
 
 Raspberry Pi compatibility
 --------------------------
-| OS            | Version   | Variant | | Zero | Zero W / WH | Zero 2 W | 1 Mod. A | 1 Mod. A+ | 1 Mod. B | 1 Mod. B+ |	2 Mod. B | 2 Mod. B v1.2 | 3 Mod. A+ |	3 Mod. B | 3 Mod. B+ | 4 Mod. B | 5 | Link |
-| ------------- | --------- | ------- |-| ---- | ----------- | -------- | -------- | --------- | -------- | --------- | -------- | ------------- | --------- | -------- | --------- | -------- | ---- | ---- |
-|               |           | CPU     | |ARMv6 32-bit|ARMv6 32-bit|ARMv8 64-bit|ARMv6 32-bit|ARMv6 32-bit|ARMv6 32-bit|ARMv6 32-bit|ARMv7 32-bit|ARMv8 64-bit|ARMv8 64-bit|ARMv8 64-bit|ARMv8 64-bit|ARMv8 64-bit|ARMv8 64-bit|
-|               |           | RAM     | |512 MB| 512MB       | 512 MB   | 256 MB   | (512 MB)  | (512 MB) | 512 MB    | 1 GB     | 1 GB          | 512 MB    | 1 GB     | 1 GB      |1/2/4/8 GB|4/8 GB|
-| Fedora        | 39        | IoT     | |      |             | [X](#fedora-39-iot-on-raspberry-pi-zero-2-w)        |          |           |          |           |          |               |           |          |           |          |      |
-| Fedora        | 39        | Minimal | |      |             | X        |          |           |          |           |          |               |           |          |           |          |      | https://download.fedoraproject.org/pub/fedora-secondary/releases/39/Spins/aarch64/images/Fedora-Minimal-39-1.5.aarch64.raw.xz |
-| CentOS        | 9 Stream  |         | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
-| RedSleeve     | 7         |         | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
-| RaspiOS       |           |         | |      |             |          |          |           |          |           |          |               |           |          |           |          |   |
+| OS            | Version   | Variant  | | Zero       | Zero W / WH | Zero 2 W   | 1 Mod. A   | 1 Mod. A+  | 1 Mod. B   | 1 Mod. B+  |	2 Mod. B  | 2 Mod. B v1.2 | 3 Mod. A+    | 3 Mod. B   | 3 Mod. B+  | 4 Mod. B   | 5          |
+| ------------- | --------- | -------- |-| ---------- | ----------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ------------- | ------------ | ---------- | ---------- | ---------- | ---------- |
+|               |           | CPU      | |ARMv6 32-bit|ARMv6 32-bit |ARMv8 64-bit|ARMv6 32-bit|ARMv6 32-bit|ARMv6 32-bit|ARMv6 32-bit|ARMv7 32-bit|ARMv8 64-bit   |ARMv8 64-bit  |ARMv8 64-bit|ARMv8 64-bit|ARMv8 64-bit|ARMv8 64-bit|
+|               |           | RAM      | | 512 MB     | 512MB       | 512 MB     | 256 MB     | (512 MB)   | (512 MB)   | 512 MB     | 1 GB       | 1 GB          | 512 MB       | 1 GB       | 1 GB       | 1/2/4/8 GB | 4/8 GB     |
+| CentOS        | 7         |          | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
+| CentOS        | 8         |          | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
+| CentOS        | 8 Stream  |          | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
+| CentOS        | 9 Stream  |          | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
+| Fedora        | 39        | IoT      | |      |             |[X](#fedora-39-iot-on-raspberry-pi-zero-2-w)|          |           |          |           |          |               |           |          |           |          |      |
+| Fedora        | 39        | Minimal  | |      |             |[X](#fedora-39-minimal-on-raspberry-pi-zero-2-w)|          |           |          |           |          |               |           |          |           |          |
+| Fedora        | 39        | KDE Spin | |      |             |[X](#fedora-39-KDE-on-raspberry-pi-XXX)|          |           |          |           |          |               |           |          |           |          |
+| RaspiOS       |           |          | |      |             ||          |           |          |           |          |               |           |          |           |          |   |
+| RedSleeve     | 7         |          | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
 
+# CentOS
+Upstream Red Hat Enterprise Linux: ```http://mirror.centos.org/altarch/``` or ```http://isoredirect.centos.org/altarch/```
+
+## CentOS 7 on Raspberry Pi TBD
+## CentOS 8 on Raspberry Pi TBD
+## CentOS 8 Stream on Raspberry Pi TBD
+## CentOS 9 Stream on Raspberry Pi TBD
+
+
+# Fedora
+https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
+
+## Fedora 39 Minimal on Raspberry Pi Zero 2 W
+* Download image: https://download.fedoraproject.org/pub/fedora-secondary/releases/39/Spins/aarch64/images/Fedora-Minimal-39-1.5.aarch64.raw.xz
+* Write image to sd card
+    ```
+    arm-image-installer --resizefs --target=rpi02w --image=/home/<YOUR_USER>/Downloads/Fedora-Minimal-39-1.5.aarch64.raw.xz --media=/dev/sdX
+    ```
+* If you haven't used ```--resizefs``` to use available space on sd card, either add a 4th partition with parted or enlarge 3rd partition:
+    ```
+    # enlarge the 3rd partition (this example uses mmcblk0)
+    growpart /dev/mmcblk0 3
+    # grow the volume to take up the rest of the disk
+    resize2fs /dev/mmcblk0p3
+    # resize root partition for the armhfp server image (which uses xfs)
+    xfs_growfs -d /
+    ```
+* Activate wifi for minimal and server images:
+    ```
+    # list of networks
+    nmcli device wifi list
+    # connect
+    nmcli device wifi connect $SSID --ask
+    # in case of failure due to wrong password remove connection
+    nmcli con delete $SSID
+    # before connecting again
+    ```
+
+## Fedora 39 IoT on Raspberry Pi Zero 2 W
+
+* Download image: https://download.fedoraproject.org/pub/alt/iot/39/IoT/aarch64/images/Fedora-IoT-39.20231103.1-20231103.1.aarch64.raw.xz
+
+    See https://docs.fedoraproject.org/en-US/iot/ for more info.
+    
+    https://www.redhat.com/sysadmin/fedora-iot-raspberry-pi
+    https://www.redhat.com/sysadmin/ansible-automate-fedora-iot-config
+    ```
+    arm-image-installer --norootpass --resizefs --target=rpi02w --addkey=/home/<YOUR_USER>/.ssh/id_rsa.pub --image=/home/<YOUR_USER>/Downloads/Fedora-IoT-39.20231103.1-20231103.1.aarch64.raw.xz --media=/dev/sdX
+    ```
+
+* Activate wifi for IoT images
+    ```
+    # mount partition 3 and create wifi01.nmconnection in
+    /mnt/ostree/deploy/fedora-iot/deploy/d06...0f.0/etc/NetworkManager/system-connections/
+    # with the following content:
+    [connection]
+    id=wifi01
+    type=wifi
+    permissions=
+    autoconnect=true
+    
+    [wifi]
+    mac-address-blacklist=
+    mode=infrastructure
+    ssid=wifissid
+    
+    [wifi-security]
+    auth-alg=open
+    key-mgmt=wpa-psk
+    psk=********************************************
+    
+    [ipv4]
+    dns-search=
+    method=auto
+    
+    [ipv6]
+    addr-gen-mode=stable-privacy
+    dns-search=
+    method=auto
+    
+    [proxy]
+
+    # finally, change file permission to
+    chmod 600 wifi01.nmconnection
+    ```
+
+* Add packages and update:
+    ```
+    rpm-ostree status
+    rpm-ostree install cockpit cockpit-podman
+    firewalld-cmd --add-service cockpit --permanent
+    rpm-ostree upgrade
+    systemctl reboot
+    systemctl enable --now cockpit.socket
+    useradd -G wheel -c "Tux Pinguin" -m -U tux
+    passwd tux
+    ```
 
 Raspberry Pi Zero, Raspberry Pi Zero W / WH
 -----------------------------------------
@@ -128,102 +229,8 @@ EOF
     ```
     ssh pi@192.168.178.42
     ```
-## Fedora
-https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
-
-* Verified downloads
-  * https://download.fedoraproject.org/pub/fedora-secondary/releases/39/Spins/aarch64/images/Fedora-Minimal-39-1.5.aarch64.raw.xz
-
-    To use available space on sd card, either add a 4th partition with parted or enlarge 3rd partition:
-    ```
-    # enlarge the 3rd partition (this example uses mmcblk0)
-    growpart /dev/mmcblk0 3
-    # grow the volume to take up the rest of the disk
-    resize2fs /dev/mmcblk0p3
-    # resize root partition for the armhfp server image (which uses xfs)
-    xfs_growfs -d /
-    ```
-  
-    
-
-* Activate wifi for
-  * minimal and server images
-    ```
-    # list of networks
-    nmcli device wifi list
-    # connect
-    nmcli device wifi connect $SSID --ask
-    # in case of failure due to wrong password remove connection
-    nmcli con delete $SSID
-    # before connecting again
-    ```
-
-### Fedora 39 IoT on Raspberry Pi Zero 2 W
-
-* https://download.fedoraproject.org/pub/alt/iot/39/IoT/aarch64/images/Fedora-IoT-39.20231103.1-20231103.1.aarch64.raw.xz
-
-    See https://docs.fedoraproject.org/en-US/iot/ for more info.
-    
-    https://www.redhat.com/sysadmin/fedora-iot-raspberry-pi
-    https://www.redhat.com/sysadmin/ansible-automate-fedora-iot-config
-    ```
-    arm-image-installer --norootpass --resizefs --target=rpi02w --addkey=/home/<YOUR_USER>/.ssh/id_rsa.pub --image=/home/<YOUR_USER>/Downloads/Fedora-IoT-39.20231103.1-20231103.1.aarch64.raw.xz --media=/dev/sdb
-    ```
-
-* Activate wifi for IoT images
-    ```
-    # mount partition 3 and create wifi01.nmconnection in
-    /mnt/ostree/deploy/fedora-iot/deploy/d06...0f.0/etc/NetworkManager/system-connections/
-    # with the following content:
-    [connection]
-    id=wifi01
-    type=wifi
-    permissions=
-    autoconnect=true
-    
-    [wifi]
-    mac-address-blacklist=
-    mode=infrastructure
-    ssid=wifissid
-    
-    [wifi-security]
-    auth-alg=open
-    key-mgmt=wpa-psk
-    psk=********************************************
-    
-    [ipv4]
-    dns-search=
-    method=auto
-    
-    [ipv6]
-    addr-gen-mode=stable-privacy
-    dns-search=
-    method=auto
-    
-    [proxy]
-
-    # finally, change file permission to
-    chmod 600 wifi01.nmconnection
-    ```
-
-* Add packages and update:
-    ```
-    rpm-ostree status
-    rpm-ostree install cockpit cockpit-podman
-    firewalld-cmd --add-service cockpit --permanent
-    rpm-ostree upgrade
-    systemctl reboot
-    systemctl enable --now cockpit.socket
-    useradd -G wheel -c "Tux Pinguin" -m -U tux
-    passwd tux
-    ```
 
     
-### CentOS
-Upstream Red Hat Enterprise Linux.
-
-* Download any image from ```http://mirror.centos.org/altarch/``` or ```http://isoredirect.centos.org/altarch/```
-
 ### RedSleeve
 https://redsleeve.fandom.com/wiki/Install_on_a_Raspberry_Pi
 A CentOS clone.
