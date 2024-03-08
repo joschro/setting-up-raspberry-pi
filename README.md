@@ -10,15 +10,15 @@ Raspberry Pi compatibility
 | ------------- | --------- | -------- |-| ---------- | ----------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- | ------------- | ------------ | ---------- | ---------- | ---------- | ---------- |
 |               |           | CPU      | |ARMv6 32-bit|ARMv6 32-bit |ARMv8 64-bit|ARMv6 32-bit|ARMv6 32-bit|ARMv6 32-bit|ARMv6 32-bit|ARMv7 32-bit|ARMv8 64-bit   |ARMv8 64-bit  |ARMv8 64-bit|ARMv8 64-bit|ARMv8 64-bit|ARMv8 64-bit|
 |               |           | RAM      | | 512 MB     | 512MB       | 512 MB     | 256 MB     | (512 MB)   | (512 MB)   | 512 MB     | 1 GB       | 1 GB          | 512 MB       | 1 GB       | 1 GB       | 1/2/4/8 GB | 4/8 GB     |
-| CentOS        | 7         |          | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
-| CentOS        | 8         |          | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
-| CentOS        | 8 Stream  |          | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
-| CentOS        | 9 Stream  |          | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
-| Fedora        | 39        | IoT      | |      |             |[X](#fedora-39-iot-on-raspberry-pi-zero-2-w)|          |           |          |           |          |               |           |          |           |          |      |
-| Fedora        | 39        | Minimal  | |      |             |[X](#fedora-39-minimal-on-raspberry-pi-zero-2-w)|          |           |          |           |          |               |           |          |           |          |
-| Fedora        | 39        | KDE Spin | |      |             |[X](#fedora-39-KDE-on-raspberry-pi-XXX)|          |           |          |           |          |               |           |          |           |          |
-| RaspiOS       |           |          | |      |             ||          |           |          |           |          |               |           |          |           |          |   |
-| RedSleeve     | 7         |          | |      |             |          |          |           |          |           |          |               |           |          |           |          |      |
+| CentOS        | 7         |          | |            |             |                                                  |          |           |          |           |          |               |           |          |           |          |          |
+| CentOS        | 8         |          | |            |             |                                                  |          |           |          |           |          |               |           |          |           |          |          |
+| CentOS        | 8 Stream  |          | |            |             |                                                  |          |           |          |           |          |               |           |          |           |          |          |
+| CentOS        | 9 Stream  |          | |            |             |[X](#centos-9-stream-on-raspberry-pi-zero-2-w)    |          |           |          |           |          |               |           |          |           |          |          |
+| Fedora        | 39        | IoT      | |            |             |[X](#fedora-39-iot-on-raspberry-pi-zero-2-w)      |          |           |          |           |          |               |           |          |           |          |          |
+| Fedora        | 39        | Minimal  | |            |             |[X](#fedora-39-minimal-on-raspberry-pi-zero-2-w)  |          |           |          |           |          |               |           |          |           |          |          |
+| Fedora        | 39        | KDE Spin | |            |             |[X](#fedora-39-KDE-on-raspberry-pi-XXX)|          |          |           |          |           |          |               |           |          |           |          |          |
+| RaspiOS       |           |          | |            |             |                                                  |          |           |          |           |          |               |           |          |           |          |          |
+| RedSleeve     | 7         |          | |            |             |                                                  |          |           |          |           |          |               |           |          |           |          |          |
 
 # CentOS
 Upstream Red Hat Enterprise Linux: ```http://mirror.centos.org/altarch/``` or ```http://isoredirect.centos.org/altarch/```
@@ -26,7 +26,32 @@ Upstream Red Hat Enterprise Linux: ```http://mirror.centos.org/altarch/``` or ``
 ## CentOS 7 on Raspberry Pi TBD
 ## CentOS 8 on Raspberry Pi TBD
 ## CentOS 8 Stream on Raspberry Pi TBD
-## CentOS 9 Stream on Raspberry Pi TBD
+## CentOS 9 Stream on Raspberry Pi Zero 2 W
+* Download image: https://people.centos.org/pgreco/CentOS-Userland-9-stream-aarch64-RaspberryPI-Minimal-4/CentOS-Userland-9-stream-aarch64-RaspberryPI-Minimal-4-sda.raw.xz
+* Write image to sd card
+    ```
+    arm-image-installer --resizefs --target=rpi02w --image=/home/<YOUR_USER>/Downloads/CentOS-Userland-9-stream-aarch64-RaspberryPI-Minimal-4-sda.raw.xz--media=/dev/sdX
+    ```
+* Login with
+  ```
+  localhost login: root
+  Password: centos
+  ```
+  and set your local keyboard
+  ```
+  loadkeys de
+  ```
+* If you haven't used the ```--resizefs``` option above to use all available space on sd card, either add a 4th partition with parted or enlarge 3rd partition:
+    ```
+    # enlarge the 3rd partition (this example uses mmcblk0)
+    growpart /dev/mmcblk0 3
+    # grow the volume to take up the rest of the disk
+    resize2fs /dev/mmcblk0p3
+* Activate wifi
+  ```
+  [root@localhost ~ ]# nmtui
+  ```
+  then ```Activate a connection```. (may not work)
 
 
 # Fedora
@@ -38,7 +63,7 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
     ```
     arm-image-installer --resizefs --target=rpi02w --image=/home/<YOUR_USER>/Downloads/Fedora-Minimal-39-1.5.aarch64.raw.xz --media=/dev/sdX
     ```
-* If you haven't used ```--resizefs``` to use available space on sd card, either add a 4th partition with parted or enlarge 3rd partition:
+* If you haven't used the ```--resizefs``` option above to use all available space on sd card, either add a 4th partition with parted or enlarge 3rd partition:
     ```
     # enlarge the 3rd partition (this example uses mmcblk0)
     growpart /dev/mmcblk0 3
