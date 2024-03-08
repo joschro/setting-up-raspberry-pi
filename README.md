@@ -13,7 +13,7 @@ Raspberry Pi compatibility
 | CentOS        | 7         |          | |            |             |                                                  |          |           |          |           |          |               |           |          |           |          |          |
 | CentOS        | 8         |          | |            |             |                                                  |          |           |          |           |          |               |           |          |           |          |          |
 | CentOS        | 8 Stream  |          | |            |             |                                                  |          |           |          |           |          |               |           |          |           |          |          |
-| CentOS        | 9 Stream  |          | |            |             |[X](#centos-9-stream-on-raspberry-pi-zero-2-w)    |          |           |          |           |          |               |           |          |           |          |          |
+| CentOS        | 9 Stream  |          | |            |             |[(X)](#centos-9-stream-on-raspberry-pi-zero-2-w)  |          |           |          |           |          |               |           |          |           |          |          |
 | Fedora        | 39        | IoT      | |            |             |[X](#fedora-39-iot-on-raspberry-pi-zero-2-w)      |          |           |          |           |          |               |           |          |           |          |          |
 | Fedora        | 39        | Minimal  | |            |             |[X](#fedora-39-minimal-on-raspberry-pi-zero-2-w)  |          |           |          |           |          |               |           |          |           |          |          |
 | Fedora        | 39        | KDE Spin | |            |             |[X](#fedora-39-KDE-on-raspberry-pi-XXX)|          |          |           |          |           |          |               |           |          |           |          |          |
@@ -51,7 +51,10 @@ Upstream Red Hat Enterprise Linux: ```http://mirror.centos.org/altarch/``` or ``
   ```
   [root@localhost ~ ]# nmtui
   ```
-  then ```Activate a connection```. (may not work)
+  then ```Activate a connection```.
+
+  > [!IMPORTANT]
+  > Seems not to work, no SSID is showing up; connecting wired network works to update, but afterwards network is not coming up - brmcfmac module crashes.
 
 
 # Fedora
