@@ -16,7 +16,7 @@ Raspberry Pi compatibility
 | CentOS        | 9 Stream  |          | |            |             |[(X)](#centos-9-stream-on-raspberry-pi-zero-2-w)  |          |           |          |           |          |               |           |          |           |          |          |
 | Fedora        | 39        | IoT      | |            |             |[X](#fedora-39-iot-on-raspberry-pi-zero-2-w)      |          |           |          |           |          |               |           |          |           |          |          |
 | Fedora        | 39        | Minimal  | |            |             |[X](#fedora-39-minimal-on-raspberry-pi-zero-2-w)  |          |           |          |           |          |               |           |          |           |          |          |
-| Fedora        | 39        | KDE Spin | |            |             |[X](#fedora-39-KDE-on-raspberry-pi-XXX)|          |          |           |          |           |          |               |           |          |           |          |          |
+| Fedora        | 39        | KDE Spin | |            |             |                                                  |          |           |          |           |          |               |           |          |           |[X](#fedora-39-kde-on-raspberry-pi-4-b)|          |          |
 | RaspiOS       |           |          | |            |             |                                                  |          |           |          |           |          |               |           |          |           |          |          |
 | RedSleeve     | 7         |          | |            |             |                                                  |          |           |          |           |          |               |           |          |           |          |          |
 
@@ -145,6 +145,22 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
     useradd -G wheel -c "Tux Pinguin" -m -U tux
     passwd tux
     ```
+## Fedora 39 KDE on Raspberry Pi 4 B
+* Download image: https://download.fedoraproject.org/pub/fedora-secondary/releases/39/Spins/aarch64/images/Fedora-KDE-39-1.5.aarch64.raw.xz
+* Write image to sd card
+    ```
+    arm-image-installer --resizefs --target=rpi02w --image=/home/<YOUR_USER>/Downloads/Fedora-KDE-39-1.5.aarch64.raw.xz --media=/dev/sdX
+    ```
+* If you haven't used the ```--resizefs``` option above to use all available space on sd card, either add a 4th partition with parted or enlarge 3rd partition:
+    ```
+    # enlarge the 3rd partition (this example uses mmcblk0)
+    growpart /dev/mmcblk0 3
+    # grow the volume to take up the rest of the disk
+    resize2fs /dev/mmcblk0p3
+    # resize root partition for the armhfp server image (which uses xfs)
+    xfs_growfs -d /
+    ```
+
 
 # RaspiOS
 * Download image: https://www.raspberrypi.com/software/operating-systems/
