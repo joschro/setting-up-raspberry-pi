@@ -3,6 +3,7 @@ Setting up a Raspberry Pi
 Install options for the Raspberry Pi (all versions)
 
 Detailed hardware information for all versions: https://de.wikipedia.org/wiki/Raspberry_Pi
+Overview of distributions available on Raspberry Pi: https://elinux.org/RPi_Distributions
 
 Raspberry Pi compatibility
 --------------------------
