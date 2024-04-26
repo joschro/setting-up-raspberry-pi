@@ -87,6 +87,16 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
     # before connecting again
     ```
 
+* You'll probably want more available RAM, only solution is to add SWAP space:
+    ```
+    dd if=/dev/zero of=/swap.file bs=4M count=256
+    mkswap /swap.file
+    chmod 0600 /swap.file
+    swapon /swap.file
+    echo -e "/swap.file\tswap\tswap\tdefaults\t0\t0" >> /etc/fstab
+    ```
+
+
 ## Fedora 39 IoT on Raspberry Pi Zero 2 W
 
 * Download image: https://download.fedoraproject.org/pub/alt/iot/39/IoT/aarch64/images/Fedora-IoT-39.20231103.1-20231103.1.aarch64.raw.xz
