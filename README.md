@@ -195,14 +195,14 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
     xfs_growfs -d /
     ```
 * before booting into the installer you need to edit the kernel option in the grub menu when installing Fedora-KDE-40-1.14.aarch64.raw.xz to workaround a graphics bug of the installer making it impossible to do the installation:
-  * hit <e> when the grub boot menu shows up
-  * move the cursor down 3 lines to the kernel command line and press <end> to move the cursor to the end of the line
+  * hit ```<e>``` when the grub boot menu shows up
+  * move the cursor down 3 lines to the kernel command line and press ```<end>``` to move the cursor to the end of the line
   * enter
       ```
       nomodeset
       ```
-  * enter <ctrl>-<x> to boot with the modified boot options
-  * after successful installation, you'll be left with a cursor on a black screen; press <ctrl>-<alt>-<3> to get to the text console and hit <ctrl>-<alt>-<del> to reboot the system. No the system should boot into the graphical login screen
+  * enter ```<ctrl>```-```<x>``` to boot with the modified boot options
+  * after successful installation, you'll be left with a cursor on a black screen; press ```<ctrl>```-```<alt>```-```<3>``` to get to the text console and hit ```<ctrl>```-```<alt>```-```<del>``` to reboot the system. No the system should boot into the graphical login screen
 
 # RaspiOS
 * Download image: https://www.raspberrypi.com/software/operating-systems/
