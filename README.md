@@ -220,25 +220,63 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
   sudo raspi-config
   ```
   
-* For headless operation (no monitor, no keyboard attached), you need to prepare the installes operating system to be accessible via Wifi:
-  * Mount the /boot partition (in this case to /run/media/joschro/bootfs); create a file called "ssh" in the boot partition, e.g.
-    ```
-    touch /run/media/joschro/bootfs/ssh
-    ```
-  
-  *  In the same location, create a file called wpa_supplicant.conf with e.g.
-     ```
-     cat > /run/media/joschro/bootfs/wpa_supplicant.conf <<EOF
-     ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-     update_config=1
-     country=DE
-     
-     network={
-             ssid="myhomewifi"
-             psk="myhomewifipassword"
-     }
-     EOF
-     ```
+* For headless operation (no monitor, no keyboard attached), you need to prepare the installed operating system to be accessible via Wifi:
+  * For RaspiOS up to Bullseye
+    * Mount the /boot partition (in this case to /run/media/joschro/bootfs); create a file called "ssh" in the boot partition, e.g.
+      ```
+      touch /run/media/joschro/bootfs/ssh
+      ```
+    * In the same location, create a file called wpa_supplicant.conf with
+      ```
+      cat > /run/media/joschro/bootfs/wpa_supplicant.conf <<EOF
+      ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+      update_config=1
+      country=DE
+      
+      network={
+              ssid="myhomewifi"
+              psk="myhomewifipassword"
+      }
+      EOF
+      ```  
+    
+  * For RaspiOS from Bookworm or later
+    * Mount the /boot partition (in this case to /run/media/joschro/bootfs);create a file called "custom.toml" in the boot partition with
+      ```
+      # Required:
+      config_version = 1
+
+      [system]
+      hostname = "raspberrypi"
+
+      [user]
+      # If present, the default "pi" user gets renamed to this "name"
+      name = "pi"
+      # The password can be encrypted or plain. To encrypt, we can use "openssl passwd -5 raspberry"
+      password = "$5$gi4yf1aU9lHD1DRD$IHsbDIrC2UtmW8Q.qD2cTcrbLJ1zc6iV1oCT7FeDLb1"
+      password_encrypted = true
+      
+      [ssh]
+      # ssh_import_id = "gh:user" # import public keys from github
+      enabled = true
+      password_authentication = false
+      # We can also seed the ssh public keys configured for the default user:
+      # authorized_keys = [ "ssh-rsa ... user@host", ... ]
+
+      [wlan]
+      ssid = "mywifi"
+      password = "$5$pN7oRnie.WDOHoJY$aWEYmKUytN/S/bxMza5ksBiurbSJmcvcysBKHSmYa45"
+      password_encrypted = true
+      hidden = false
+      # The country is written to /etc/default/crda
+      # Reference: https://wireless.wiki.kernel.org/en/developers/Regulatory
+      country = "DE"
+
+      [locale]
+      keymap = "de"
+      timezone = "Europe/Berlin"
+      ```
+
 *    
   * Unmount the mount point, e.g.  
     ```
