@@ -15,6 +15,7 @@ Raspberry Pi compatibility
 | CentOS        | 8         |          | |            |                                                            |                                                           |          |           |          |           |          |               |           |          |           |          |          |
 | CentOS        | 8 Stream  |          | |            |                                                            |                                                           |          |           |          |           |          |               |           |          |           |          |          |
 | CentOS        | 9 Stream  |          | |            |                                                            |[(X)](#centos-9-stream-on-raspberry-pi-zero-2-w)           |          |           |          |           |          |               |           |          |           |          |          |
+| Fedora        | 37        | XFCE Spin| |            |                                                            |[X](#fedora-37-xfce-on-raspberry-pi-zero-2-w)               |          |           |          |           |          |               |           |          |           |          |          |
 | Fedora        | 39        | IoT      | |            |                                                            |[X](#fedora-39-iot-on-raspberry-pi-zero-2-w)               |          |           |          |           |          |               |           |          |           |          |          |
 | Fedora        | 39        | Minimal  | |            |                                                            |[X](#fedora-39-minimal-on-raspberry-pi-zero-2-w)           |          |           |          |           |          |               |           |          |           |          |          |
 | Fedora        | 39        | KDE Spin | |            |                                                            |                                                           |          |           |          |           |          |               |           |          |           |[X](#fedora-39-kde-on-raspberry-pi-4-b)|          |          |
@@ -64,30 +65,11 @@ Upstream Red Hat Enterprise Linux: ```http://mirror.centos.org/altarch/``` or ``
 # Fedora
 https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
 
-## Fedora 39 Minimal on Raspberry Pi Zero 2 W
-* Download image: https://download.fedoraproject.org/pub/fedora-secondary/releases/39/Spins/aarch64/images/Fedora-Minimal-39-1.5.aarch64.raw.xz
+## Fedora 37 XFCE on Raspberry Pi Zero 2 W
+* Download image: https://download.fedoraproject.org/pub/archive/fedora-secondary/releases/37/Spins/aarch64/images/Fedora-Xfce-37-1.7.aarch64.raw.xz
 * Write image to sd card
     ```
-    arm-image-installer --resizefs --target=rpi02w --image=/home/<YOUR_USER>/Downloads/Fedora-Minimal-39-1.5.aarch64.raw.xz --media=/dev/sdX
-    ```
-* If you haven't used the ```--resizefs``` option above to use all available space on sd card, either add a 4th partition with parted or enlarge 3rd partition:
-    ```
-    # enlarge the 3rd partition (this example uses mmcblk0)
-    growpart /dev/mmcblk0 3
-    # grow the volume to take up the rest of the disk
-    resize2fs /dev/mmcblk0p3
-    # resize root partition for the armhfp server image (which uses xfs)
-    xfs_growfs -d /
-    ```
-* Activate wifi for minimal and server images:
-    ```
-    # list of networks
-    nmcli device wifi list
-    # connect
-    nmcli device wifi connect $SSID --ask
-    # in case of failure due to wrong password remove connection
-    nmcli con delete $SSID
-    # before connecting again
+    arm-image-installer --showboot --resizefs --target=rpi02w --image=/home/<YOUR_USER>/Downloads/Fedora-Minimal-39-1.5.aarch64.raw.xz --media=/dev/sdX
     ```
 
 * You'll probably want more available RAM, only solution is to add SWAP space:
@@ -98,7 +80,6 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
     swapon /swap.file
     echo -e "/swap.file\tswap\tswap\tdefaults\t0\t0" >> /etc/fstab
     ```
-
 
 ## Fedora 39 IoT on Raspberry Pi Zero 2 W
 
@@ -163,6 +144,42 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
     useradd -G wheel -c "Tux Pinguin" -m -U tux
     passwd tux
     ```
+
+## Fedora 39 Minimal on Raspberry Pi Zero 2 W
+* Download image: https://download.fedoraproject.org/pub/fedora-secondary/releases/39/Spins/aarch64/images/Fedora-Minimal-39-1.5.aarch64.raw.xz
+* Write image to sd card
+    ```
+    arm-image-installer --resizefs --target=rpi02w --image=/home/<YOUR_USER>/Downloads/Fedora-Minimal-39-1.5.aarch64.raw.xz --media=/dev/sdX
+    ```
+* If you haven't used the ```--resizefs``` option above to use all available space on sd card, either add a 4th partition with parted or enlarge 3rd partition:
+    ```
+    # enlarge the 3rd partition (this example uses mmcblk0)
+    growpart /dev/mmcblk0 3
+    # grow the volume to take up the rest of the disk
+    resize2fs /dev/mmcblk0p3
+    # resize root partition for the armhfp server image (which uses xfs)
+    xfs_growfs -d /
+    ```
+* Activate wifi for minimal and server images:
+    ```
+    # list of networks
+    nmcli device wifi list
+    # connect
+    nmcli device wifi connect $SSID --ask
+    # in case of failure due to wrong password remove connection
+    nmcli con delete $SSID
+    # before connecting again
+    ```
+
+* You'll probably want more available RAM, only solution is to add SWAP space:
+    ```
+    dd if=/dev/zero of=/swap.file bs=4M count=256
+    mkswap /swap.file
+    chmod 0600 /swap.file
+    swapon /swap.file
+    echo -e "/swap.file\tswap\tswap\tdefaults\t0\t0" >> /etc/fstab
+    ```
+
 ## Fedora 39 KDE on Raspberry Pi 4 B
 * Download image: https://download.fedoraproject.org/pub/fedora-secondary/releases/39/Spins/aarch64/images/Fedora-KDE-39-1.5.aarch64.raw.xz
 * Write image to sd card
