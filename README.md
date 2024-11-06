@@ -19,6 +19,7 @@ Raspberry Pi compatibility
 | Fedora        | 39        | IoT      | |            |                                                            |[X](#fedora-39-iot-on-raspberry-pi-zero-2-w)               |          |           |          |           |          |               |           |          |           |          |          |
 | Fedora        | 39        | Minimal  | |            |                                                            |[X](#fedora-39-minimal-on-raspberry-pi-zero-2-w)           |          |           |          |           |          |               |           |          |           |          |          |
 | Fedora        | 39        | KDE Spin | |            |                                                            |                                                           |          |           |          |           |          |               |           |          |           |[X](#fedora-39-kde-on-raspberry-pi-4-b)|          |          |
+| Fedora        | 40        | Minimal  | |            |                                                            |[X](#fedora-40-minimal-on-raspberry-pi-zero-2-w)           |          |           |          |           |          |               |           |          |           |          |          |
 | Fedora        | 40        | KDE Spin | |            |                                                            |                                                           |          |           |          |           |          |               |           |          |           |[X](#fedora-40-kde-on-raspberry-pi-4-b)|          |          |
 | RaspiOS       |           |          | |            |                                                            |[X](#raspios-on-raspberry-pi-zero-2-w)                     |          |           |          |           |          |               |           |          |           |          |          |
 | RedSleeve     | 6         |          | |            |[X](#redsleeve-6-on-raspberry-pi-zero-raspberry-pi-zero-wwh)|                                                           |          |           |          |           |          |               |           |          |           |          |          |
@@ -194,6 +195,41 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
     resize2fs /dev/mmcblk0p3
     # resize root partition for the armhfp server image (which uses xfs)
     xfs_growfs -d /
+    ```
+
+## Fedora 40 Minimal on Raspberry Pi Zero 2 W
+* Download image: [https://download.fedoraproject.org/pub/fedora-secondary/releases/39/Spins/aarch64/images/Fedora-Minimal-39-1.5.aarch64.raw.xz](https://d2lzkl7pfhq30w.cloudfront.net/pub/fedora/linux/releases/40/Server/aarch64/images/Fedora-Server-40-1.14.aarch64.raw.xz)
+* Write image to sd card
+    ```
+    arm-image-installer --resizefs --target=rpi02w --image=/home/<YOUR_USER>/Downloads/Fedora-Server-40-1.14.aarch64.raw.xz --media=/dev/sdX
+    ```
+* If you haven't used the ```--resizefs``` option above to use all available space on sd card, either add a 4th partition with parted or enlarge 3rd partition:
+    ```
+    # enlarge the 3rd partition (this example uses mmcblk0)
+    growpart /dev/mmcblk0 3
+    # grow the volume to take up the rest of the disk
+    resize2fs /dev/mmcblk0p3
+    # resize root partition for the armhfp server image (which uses xfs)
+    xfs_growfs -d /
+    ```
+* Activate wifi for minimal and server images:
+    ```
+    # list of networks
+    nmcli device wifi list
+    # connect
+    nmcli device wifi connect $SSID --ask
+    # in case of failure due to wrong password remove connection
+    nmcli con delete $SSID
+    # before connecting again
+    ```
+
+* You'll probably want more available RAM, only solution is to add SWAP space:
+    ```
+    dd if=/dev/zero of=/swap.file bs=4M count=256
+    mkswap /swap.file
+    chmod 0600 /swap.file
+    swapon /swap.file
+    echo -e "/swap.file\tswap\tswap\tdefaults\t0\t0" >> /etc/fstab
     ```
 
 ## Fedora 40 KDE on Raspberry Pi 4 B
