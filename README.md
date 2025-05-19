@@ -36,7 +36,7 @@ Upstream Red Hat Enterprise Linux: ```http://mirror.centos.org/altarch/``` or ``
 * Download image: https://people.centos.org/pgreco/CentOS-Userland-9-stream-aarch64-RaspberryPI-Minimal-4/CentOS-Userland-9-stream-aarch64-RaspberryPI-Minimal-4-sda.raw.xz
 * Write image to sd card
     ```
-    arm-image-installer --resizefs --target=rpi02w --image=/home/<YOUR_USER>/Downloads/CentOS-Userland-9-stream-aarch64-RaspberryPI-Minimal-4-sda.raw.xz--media=/dev/sdX
+    arm-image-installer --resizefs --target=rpi02w --image=/home/<YOUR_USER>/Downloads/CentOS-Userland-9-stream-aarch64-RaspberryPI-Minimal-4-sda.raw.xz --media=/dev/sdX
     ```
 * Login with
   ```
