@@ -266,6 +266,16 @@ From https://rpmfusion.org/Howto/RaspberryPi
 
 Boot the Raspberry from the sdcard and follow the setup instructions.
 
+* Activate wifi for minimal and server images:
+    ```
+    # list of networks
+    nmcli device wifi list
+    # connect
+    nmcli device wifi connect $SSID --ask
+    # in case of failure due to wrong password remove connection
+    nmcli con delete $SSID
+    # before connecting again
+
 # RaspiOS
 * Download image: https://www.raspberrypi.com/software/operating-systems/
 
