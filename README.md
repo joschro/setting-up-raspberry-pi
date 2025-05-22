@@ -21,6 +21,7 @@ Raspberry Pi compatibility
 | Fedora        | 39        | KDE Spin | |            |                                                            |                                                           |          |           |          |           |          |               |           |          |           |[X](#fedora-39-kde-on-raspberry-pi-4-b)|          |          |
 | Fedora        | 40        | Minimal  | |            |                                                            |[X](#fedora-40-minimal-on-raspberry-pi-zero-2-w)           |          |           |          |           |          |               |           |          |           |          |          |
 | Fedora        | 40        | KDE Spin | |            |                                                            |                                                           |          |           |          |           |          |               |           |          |           |[X](#fedora-40-kde-on-raspberry-pi-4-b)|          |          |
+| Fedora        | 42        | Server   | |            |                                                            |[X](#fedora-42-server-on-raspberry-pi-zero-2-w)           |          |           |          |           |          |               |           |          |           |          |          |
 | RaspiOS       |           |          | |            |                                                            |[X](#raspios-on-raspberry-pi-zero-2-w)                     |          |           |          |           |          |               |           |          |           |          |          |
 | RedSleeve     | 6         |          | |            |[X](#redsleeve-6-on-raspberry-pi-zero-raspberry-pi-zero-wwh)|                                                           |          |           |          |           |          |               |           |          |           |          |          |
 | RedSleeve     | 7         |          | |            |[X](#redsleeve-7-on-raspberry-pi-zero-raspberry-pi-zero-wwh)|                                                           |          |           |          |           |          |               |           |          |           |          |          |
@@ -255,7 +256,15 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
       nomodeset
       ```
   * enter ```<ctrl>```-```<x>``` to boot with the modified boot options
-  * after successful installation, you'll be left with a cursor on a black screen; press ```<ctrl>```-```<alt>```-```<3>``` to get to the text console and hit ```<ctrl>```-```<alt>```-```<del>``` to reboot the system. No the system should boot into the graphical login screen
+  * after successful installation, you'll be left with a cursor on a black screen; press ```<ctrl>```-```<alt>```-```<3>``` to get to the text console and hit ```<ctrl>```-```<alt>```-```<del>``` to reboot the system. Now the system should boot into the graphical login screen
+
+## Fedora 42 Server on Raspberry Pi Zero 2 W
+From https://rpmfusion.org/Howto/RaspberryPi
+
+* Download image: https://drive.google.com/file/d/1SNNOFK85PvH46e_0yIHACT56OUWKNyAH/view
+* Copy image onto sdcard: ```sudo arm-image-installer --image=fedora-server-aarch64-f42-20250411-sda.raw.xz --media=/dev/sda --resizefs --target=rpi02w```
+
+Boot the Raspberry from the sdcard and follow the setup instructions.
 
 # RaspiOS
 * Download image: https://www.raspberrypi.com/software/operating-systems/
