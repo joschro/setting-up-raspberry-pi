@@ -262,7 +262,7 @@ https://fedoraproject.org/wiki/Architectures/ARM/Raspberry_Pi
 From https://rpmfusion.org/Howto/RaspberryPi
 
 * Download image: https://drive.google.com/file/d/1SNNOFK85PvH46e_0yIHACT56OUWKNyAH/view
-* Copy image onto sdcard: ```sudo arm-image-installer --image=fedora-server-aarch64-f42-20250411-sda.raw.xz --media=/dev/sda --resizefs --target=rpi02w```
+* Copy image onto sdcard: ```sudo arm-image-installer --image=fedora-server-aarch64-f42-20250411-sda.raw.xz --media=/dev/sda --target=rpi02w```
 
 Boot the Raspberry from the sdcard and follow the setup instructions.
 
