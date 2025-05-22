@@ -277,10 +277,10 @@ Boot the Raspberry from the sdcard and follow the setup instructions.
     # before connecting again
     ```
 * Resize filesystem
-      ```
-      sudo growpart -u on /dev/mmcblk0 2
-      sudo btrfs filesystem resize max /
-      ```
+    ```
+    sudo growpart -u on /dev/mmcblk0 2
+    sudo btrfs filesystem resize max /
+    ```
   
 # RaspiOS
 * Download image: https://www.raspberrypi.com/software/operating-systems/
