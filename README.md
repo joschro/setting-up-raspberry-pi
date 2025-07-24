@@ -285,7 +285,7 @@ Boot the Raspberry from the sdcard and follow the setup instructions.
 ### Adding graphical interface for e.g. kiosk mode
 Install required packages
 ```
-sudo dnf install vim lxdm openbox xbacklight feh conky xorg-x11-drv-libinput volumeicon network-manager-applet
+sudo dnf install vim lxdm openbox xorg-x11-server-Xorg xbacklight feh conky xorg-x11-drv-libinput volumeicon network-manager-applet xsetroot xterm
 ```
 
 Using ```sudo vim /boot/config.txt```, add
