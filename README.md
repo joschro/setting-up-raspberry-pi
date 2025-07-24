@@ -281,7 +281,71 @@ Boot the Raspberry from the sdcard and follow the setup instructions.
     sudo growpart -u on /dev/mmcblk0 2
     sudo btrfs filesystem resize max /
     ```
-  
+
+### Adding graphical interface for e.g. kiosk mode
+Install required packages
+```
+sudo dnf install vim lxdm openbox xbacklight feh conky xorg-x11-drv-libinput volumeicon network-manager-applet
+```
+
+Using ```sudo vim /boot/config.txt```, add
+```
+hdmi_force_hotplug=1
+hdmi_group=1
+hdmi_mode=82
+dtoverlay=vc4-fkms-v3d
+```
+to /boot/config.txt
+
+```
+sudo systemctl get-default graphical.target
+sudo systemctl enable lxdm.service
+sudo usermod -aG video dus
+mkdir ~/.config/openbox
+```
+
+Using ```vim ~/.config/openbox/autostart```, create an autostart file for openbox:
+```
+# Set tapping on touchpad on:
+#xinput set-prop 11 278 1 &
+
+# Set desktop wallpaper:
+#feh --bg-scale ~/path/to/wallpaper.png &
+
+# Show system tray
+#tint2 &
+
+# Show system info
+#conky &
+
+# NetworkManager
+#nm-applet &
+
+# Volume control in system tray
+#volumeicon &
+
+# autostart chromium
+#xset -dpms
+#xset s off
+#xset s noblank
+#chromium-browser --kiosk http://your-url.com
+```
+Uncomment what you want to have started automatically upon startup.
+
+Using ```vim .xinitrc```, create a ```.xinitrc``` file in the user's home directory:
+```
+#!/bin/sh
+
+# Set a simple background (optional, needs xsetroot)
+xsetroot -solid grey
+
+xterm &
+
+# Start Openbox window manager
+exec openbox-session
+```
+
+
 # RaspiOS
 * Download image: https://www.raspberrypi.com/software/operating-systems/
 
