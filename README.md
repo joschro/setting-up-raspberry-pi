@@ -303,15 +303,17 @@ dtoverlay=vc4-fkms-v3d
 ```
 to the top of /boot/config.txt
 
-Using ```sudo vim /etc/X11/xorg.conf.d/10-modesetting.conf```, create a modesetting configuration:
+Run
 ```
+sudo tee /etc/X11/xorg.conf.d/10-modesetting.conf > /dev/null <<EOF
 Section "Device"
     Identifier "Default Device"
     Driver "modesetting"
 EndSection
-
+EOF
 ```
-
+to create a modesetting configuration.
+ 
 Run
 ```
 sudo systemctl get-default graphical.target
