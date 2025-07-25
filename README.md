@@ -301,7 +301,7 @@ hdmi_group=1
 hdmi_mode=82
 dtoverlay=vc4-fkms-v3d
 ```
-to /boot/config.txt
+to the top of /boot/config.txt
 
 Using ```sudo vim /etc/X11/xorg.conf.d/10-modesetting.conf```, create a modesetting configuration:
 ```
