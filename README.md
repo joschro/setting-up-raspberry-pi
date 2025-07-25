@@ -285,6 +285,7 @@ Boot the Raspberry from the sdcard and follow the setup instructions.
 * Install cockpit system administration
     ```
     sudo dnf install -y cockpit-podman && sudo firewall-cmd --add-service cockpit --permanent && sudo firewall-cmd --add-service cockpit && sudo systemctl enable --now cockpit.socket
+    reboot
     ```
 
 ### Adding graphical interface for e.g. kiosk mode
