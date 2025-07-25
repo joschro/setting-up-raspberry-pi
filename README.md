@@ -316,10 +316,10 @@ to create a modesetting configuration.
  
 Run
 ```
-sudo systemctl get-default graphical.target
+sudo systemctl set-default graphical.target
 sudo systemctl enable lxdm.service
 sudo usermod -aG video dus
-mkdir ~/.config/openbox
+mkdir -p ~/.config/openbox
 ```
 
 Using ```vim ~/.config/openbox/autostart```, create an autostart file for openbox:
