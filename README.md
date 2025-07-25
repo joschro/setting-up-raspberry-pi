@@ -284,13 +284,13 @@ Boot the Raspberry from the sdcard and follow the setup instructions.
 
 * Install cockpit system administration
     ```
-    sudo dnf install cockpit-podman -y && sudo firewall-cmd --add-service cockpit --permanent && sudo firewall-cmd --add-service cockpit && sudo systemctl enable --now cockpit.socket
+    sudo dnf install -y cockpit-podman && sudo firewall-cmd --add-service cockpit --permanent && sudo firewall-cmd --add-service cockpit && sudo systemctl enable --now cockpit.socket
     ```
 
 ### Adding graphical interface for e.g. kiosk mode
 Install required packages
 ```
-sudo dnf install vim lxdm openbox xorg-x11-server-Xorg xbacklight feh conky xorg-x11-drv-libinput volumeicon network-manager-applet xsetroot xterm
+sudo dnf install -y vim lxdm openbox xorg-x11-server-Xorg xbacklight feh conky xorg-x11-drv-libinput volumeicon network-manager-applet xsetroot xterm
 ```
 
 Using ```sudo vim /boot/config.txt```, add
