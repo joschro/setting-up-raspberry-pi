@@ -282,6 +282,11 @@ Boot the Raspberry from the sdcard and follow the setup instructions.
     sudo btrfs filesystem resize max /
     ```
 
+* Install cockpit system administration
+    ```
+    sudo dnf install cockpit-podman -y && sudo firewall-cmd --add-service cockpit --permanent && sudo firewall-cmd --add-service cockpit && sudo systemctl enable --now cockpit.socket
+    ```
+
 ### Adding graphical interface for e.g. kiosk mode
 Install required packages
 ```
