@@ -368,6 +368,19 @@ EOF
 ```
 to create a ```.xinitrc``` file in the user's home directory.
 
+Enable autologin for your user and set openbox as default windowmanager:
+```
+sudo tee -a /etc/lxdm/lxdm.conf > /dev/null <<EOF
+autologin=<your-username>
+session=/usr/bin/openbox-session
+EOF
+```
+
+Finally, reboot:
+```
+sudo reboot
+```
+
 # RaspiOS
 * Download image: https://www.raspberrypi.com/software/operating-systems/
 
