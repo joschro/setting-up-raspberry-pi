@@ -281,6 +281,17 @@ Boot the Raspberry from the sdcard and follow the setup instructions.
     sudo growpart -u on /dev/mmcblk0 2
     sudo btrfs filesystem resize max /
     ```
+* You might want more SWAP space; on btrfs you have to 
+    ```
+    sudo touch /swapfile
+    sudo chattr +C /swapfile    # 🛑 Must be done BEFORE writing data
+    sudo chmod 600 /swapfile
+    sudo dd if=/dev/zero of=/swapfile bs=1M count=1024 status=progress        # for 1GB SWAP
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
+    swapon --show
+    echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
+    ```
 
 * Install cockpit system administration
     ```
