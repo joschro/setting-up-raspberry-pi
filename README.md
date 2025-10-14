@@ -302,7 +302,7 @@ Boot the Raspberry from the sdcard and follow the setup instructions.
 ### Booting into graphics mode for e.g. kiosk mode
 Install required packages
 ```
-sudo dnf install -y vim lxdm openbox xorg-x11-server-Xorg xbacklight feh conky xorg-x11-drv-libinput volumeicon network-manager-applet xsetroot xset xterm falkon
+sudo dnf install -y vim lxdm openbox xorg-x11-server-Xorg xbacklight feh conky xorg-x11-drv-libinput volumeicon network-manager-applet xsetroot xset xterm dillo
 ```
 
 Using ```sudo vim /boot/config.txt```, add
@@ -360,6 +360,8 @@ cat > ~/.config/openbox/autostart <<EOF
 #xset s noblank
 #chromium-browser --kiosk http://redhat.com
 #falkon --fullscreen --no-session --disable-webengine-context-menu --homepage https://redhat.com
+# for 1920x1080 display:
+dillo -g 1980x1068+0+20 https://redhat.com
 EOF
 ```
 to create an autostart file for openbox; use ```vim ~/.config/openbox/autostart``` to uncomment what you want to have started automatically upon startup.
