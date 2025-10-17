@@ -286,7 +286,7 @@ Boot the Raspberry from the sdcard and follow the setup instructions.
     sudo touch /swapfile
     sudo chattr +C /swapfile    # 🛑 Must be done BEFORE writing data
     sudo chmod 600 /swapfile
-    sudo dd if=/dev/zero of=/swapfile bs=1M count=1024 status=progress        # for 1GB SWAP
+    sudo dd if=/dev/zero of=/swapfile bs=1M count=512 status=progress        # for 512MB additional SWAP
     sudo mkswap /swapfile
     sudo swapon /swapfile
     swapon --show
@@ -303,6 +303,11 @@ Boot the Raspberry from the sdcard and follow the setup instructions.
 Install required packages
 ```
 sudo dnf install -y vim lxdm openbox xorg-x11-server-Xorg xbacklight feh conky xorg-x11-drv-libinput volumeicon network-manager-applet xsetroot xset xterm dillo
+```
+
+Find the latest version of midori on https://github.com/goastian/midori-desktop/releases/latest and replace the link below:
+```
+curl -L "https://github.com/goastian/midori-desktop/releases/download/v11.6/midori-11.6.linux-aarch64.tar.bz2" | tar xvj
 ```
 
 Using ```sudo vim /boot/config.txt```, add
@@ -358,10 +363,17 @@ cat > ~/.config/openbox/autostart <<EOF
 #xset -dpms
 #xset s off
 #xset s noblank
+
+### start a browser ###
+# chromium won't work, needs too much resources
 #chromium-browser --kiosk http://redhat.com
+# falkon won't work, probably too much resources needed as well
 #falkon --fullscreen --no-session --disable-webengine-context-menu --homepage https://redhat.com
+# dillo works fine, but needs to allow cookies etc. to work on a minimal level; more complex pages won't work
 # for 1920x1080 display:
-dillo -g 1980x1068+0+20 https://redhat.com
+# dillo -g 1980x1068+0+20 https://redhat.com
+# midori works, but is very slow
+$HOME/midori/midori https://redhat.com
 EOF
 ```
 to create an autostart file for openbox; use ```vim ~/.config/openbox/autostart``` to uncomment what you want to have started automatically upon startup.
