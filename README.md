@@ -373,7 +373,7 @@ cat > ~/.config/openbox/autostart <<EOF
 # for 1920x1080 display:
 # dillo -g 1980x1068+0+20 https://redhat.com
 # midori works, but is very slow
-$HOME/midori/midori https://redhat.com
+$HOME/midori/midori --window-size 1980,1068 --kiosk https://redhat.com
 EOF
 ```
 to create an autostart file for openbox; use ```vim ~/.config/openbox/autostart``` to uncomment what you want to have started automatically upon startup.
